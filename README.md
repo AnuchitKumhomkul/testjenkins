@@ -1,3 +1,3 @@
 # testjenkins
 Test Jenkins Pipeline
-Auto Build
+Auto Build Jenkinfile
