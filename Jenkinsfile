@@ -1,14 +1,34 @@
 pipeline {
+  environment {
+    registry = "kowoatz/kowoatz"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+  }
+
   agent any
-  stages {
-    stage('myStage'){
+
+  stage {
+    stage('Cloning git') {
       steps {
-        sh 'ls -la' 
+        git  ''
       }
     }
-    stage('Build') {
-      steps { 
-        sh 'ls' 
+
+    stage('Building image') {
+      steps {
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+
+    stage('Deploy Image') {
+      steps {
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
       }
     }
   }
