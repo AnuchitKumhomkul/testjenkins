@@ -10,7 +10,7 @@ pipeline {
   stage {
     stage('Cloning git') {
       steps {
-        git  ''
+        git  'https://github.com/AnuchitKumhomkul/testjenkins.git'
       }
     }
 
