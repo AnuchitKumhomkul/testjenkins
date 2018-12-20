@@ -7,7 +7,7 @@ pipeline {
 
   agent any
 
-  stage {
+  stages {
     stage('Cloning git') {
       steps {
         git  'https://github.com/AnuchitKumhomkul/testjenkins.git'
