@@ -2,5 +2,5 @@
 FROM ubuntu:16.04
 
 #Update software repository
-RUN apt-get update
+RUN sudo apt-get update
 
