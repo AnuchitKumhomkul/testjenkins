@@ -4,7 +4,7 @@ FROM ubuntu:16.04
 USER root
 
 #Update software repository
-RUN apt-get update -y
+RUN echo "hello world"
 
 RUN usermod -a -G docker jenkins
 
