@@ -23,9 +23,13 @@ pipeline {
     }
 
     stage('Deploy Image') {
-      withCredentials([credentialsId: 'kowoatz', variable: 'KOWOAT']) {
-        echo 'Deploy Image'
-        docker.image.push
+      steps {
+        script {
+          docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
+        }
+      }
     }
   }
 }
