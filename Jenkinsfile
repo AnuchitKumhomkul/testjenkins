@@ -42,13 +42,13 @@ pipeline {
         }
       }
     }
-    post{
-      success{
-        notifyLINE("Succeed")
-      }
-      failure{
-        notifyLINE("Failed")
-      }
+  }
+  post{
+    success{
+      notifyLINE("Succeed")
+    }
+    failure{
+      notifyLINE("Failed")
     }
   }
 }
