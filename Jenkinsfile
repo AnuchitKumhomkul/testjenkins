@@ -1,7 +1,7 @@
 pipeline {
   environment {
-    registry = "kowoatz/kowoatz"
-    registryCredential = 'dockerhub'
+    registry = "kowoatz/anuchit"
+    registryCredential = 'kowoatz'
     dockerImage = ''
   }
 
