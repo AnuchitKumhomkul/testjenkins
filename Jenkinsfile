@@ -1,4 +1,14 @@
 pipeline {
+  def notifyLINE(status) {
+    def token = "rIxfHJHexQAMli8E4rhETrEKWqrVlTazDyY7xl0jkYJ"
+    def jobName = env.JOB_NAME +' '+env.BRANCH_NAME
+    def buildNumber = env.BUILD_NUMBER
+
+    def url = 'https://notify-api.line.me/api/notify'
+    def message = "${jobName} Build #${buildNumber} ${status} \r\n"
+    sh "curl ${url} -H 'Authorization: Bearer ${token}' -F 'message=${message}'"
+  }
+
   environment {
     registry = "kowoatz/anuchit"
     registryCredential = 'kowoatz'
@@ -30,6 +40,14 @@ pipeline {
               img.push("latest")
           }
         }
+      }
+    }
+    post{
+      success{
+        notifyLINE("Succeed")
+      }
+      failure{
+        notifyLINE("Failed")
       }
     }
   }
