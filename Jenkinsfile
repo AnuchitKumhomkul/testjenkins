@@ -17,13 +17,23 @@ pipeline {
 
   agent any
 
-  stages {
+  stage('SCM Checkout') {
+    checkout([
+      $class: 'GitSCM',
+      branches: scm.branches,
+      doGenerateSubmoduleConfigurations: scm.doGenerateSubmoduleConfigurations,
+      extentions: scm.extentions + [[$class: 'CloneOption', noTags: false, reference: '', shallow: true]],
+      userRemoteConfigs: scm.userRemoteConfigs + [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*']]
+    ])
+  }
+
+/**  stages {
     stage('Cloning git') {
       steps {
         git  'https://github.com/AnuchitKumhomkul/testjenkins.git'
       }
     }
-
+**/
     stage('Building image') {
       steps {
         script {
